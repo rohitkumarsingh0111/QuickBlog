@@ -3,10 +3,16 @@ import { useNavigate } from 'react-router-dom';
 
 const BlogCard = ({blog}) => {
 
-   // ⛔ Prevent crash when blog is undefined
 
   const { title, description, category, image, _id } = blog;
   const navigate = useNavigate();
+
+  const stripHtml = (html) => {
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+  return temp.textContent || temp.innerText || "";
+};
+
 
   return (
     <div
@@ -18,9 +24,12 @@ const BlogCard = ({blog}) => {
         {category}
       </span>
 
-      <div className='p-5'>
+      <div className='p-5' >
         <h5 className='mb-2 font-medium text-gray-900'>{title}</h5>
-        <p className='mb-3 text-xs text-gray-600'>{description?.slice(0, 80)}</p>
+       <p className="text-gray-600 text-sm">
+  {stripHtml(blog.description).slice(0, 100)}...
+</p>
+
       </div>
     </div>
   );
