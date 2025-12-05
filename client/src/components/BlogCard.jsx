@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const BlogCard = ({blog}) => {
 
-   // ⛔ Prevent crash when blog is undefined
-
   const { title, description, category, image, _id } = blog;
   const navigate = useNavigate();
 
