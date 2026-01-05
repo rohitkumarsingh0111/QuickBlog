@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { assets, dashboard_data } from '../../assets/assets'
+import BlogTableItem from '../../components/admin/BlogTableItem'
 
 const Dashboard = () => {
 
@@ -53,22 +54,35 @@ const Dashboard = () => {
           <p>Latest Blogs</p>
         </div>
 
-        <div className='relative max-w-4xl overflow-x-auto shadow rounded-lg scrollbar-hide bg-white'>
-          <table className='w-full text-sm text-gray-500'>
-            <thread className="text-xs tet-gray-600 text-left uppercase">
-              <tr>
-                <th scope='col' className='px-2 py-4 xl:p-6'> #</th>
-                <th scope='col' className='px-2 py-4'> Blog Title</th>
-                <th scope='col' className='px-2 py-4 max-sm:hidden'> Date</th>
-                <th scope='col' className='px-2 py-4 max-sm:hidden'> Status</th>
-                <th scope='col' className='px-2 py-4'> Actions</th>
-              </tr>
-            </thread>
-            <tbody>
-              
-            </tbody>
-          </table>
-        </div>
+        <div className="relative max-w-5xl mt-4 overflow-x-auto bg-white rounded-lg shadow">
+  <table className="w-full text-sm text-left text-gray-600">
+    
+    {/* TABLE HEADER */}
+    <thead className="text-xs uppercase bg-gray-50 text-gray-500 border-b">
+      <tr>
+        <th className="px-6 py-4 w-16 text-center">#</th>
+
+        <th className="px-6 py-4">Blog Title</th>
+        <th className="px-6 py-4 hidden md:table-cell">Date</th>
+        <th className="px-6 py-4 hidden md:table-cell">Status</th>
+        <th className="px-6 py-4 text-center">Actions</th>
+      </tr>
+    </thead>
+
+    {/* TABLE BODY */}
+    <tbody>
+      {dashboardData.recentBlogs.map((blog, index) => (
+        <BlogTableItem
+          key={blog._id}
+          blog={blog}
+          index={index + 1}
+          fetchBlogs={fetchDashboard}
+        />
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
       </div>
     </div>
